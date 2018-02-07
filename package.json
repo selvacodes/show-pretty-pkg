@@ -1,0 +1,30 @@
+{
+  "name": "show-pretty-pkg",
+  "version": "0.2.0",
+  "bin": {
+    "sp": "src/index.js"
+  },
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "format": "prettier --write '**/*.{js,css,md}'",
+    "posttest": "npm run format",
+    "postinstall": "npm run build"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^2.1.0",
+    "prettier": "^1.10.2"
+  },
+  "dependencies": {
+    "bs-json": "^1.0.1",
+    "chalk": "^2.3.0",
+    "minimist": "^1.2.0",
+    "rex-json": "^1.2.0"
+  }
+}
