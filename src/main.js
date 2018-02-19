@@ -7,7 +7,9 @@ var List                    = require("bs-platform/lib/js/list.js");
 var Chalk                   = require("chalk");
 var Constants$ShowPrettyPkg = require("./Constants.js");
 
-var scriptsJson = Json.get("scripts", Json.parse(Fs.readFileSync(Constants$ShowPrettyPkg.rootExecPath + "/package.json", "utf8")));
+var packageJsonPath = Constants$ShowPrettyPkg.rootExecPath + "/package.json";
+
+var scriptsJson = Json.get("scripts", Json.parse(Fs.readFileSync(packageJsonPath, "utf8")));
 
 var scripts;
 
@@ -56,6 +58,10 @@ if (scriptsJson) {
   ];
 }
 
+console.log(Chalk.bold("Project Root"));
+
+console.log(Chalk.yellow(Chalk.bold(packageJsonPath)));
+
 console.log(Chalk.bold("Project Commands"));
 
 List.iter((function (item) {
@@ -78,6 +84,7 @@ List.iter((function (item) {
         
       }), scripts);
 
-exports.scriptsJson = scriptsJson;
-exports.scripts     = scripts;
+exports.packageJsonPath = packageJsonPath;
+exports.scriptsJson     = scriptsJson;
+exports.scripts         = scripts;
 /* scriptsJson Not a pure module */

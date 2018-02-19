@@ -9,8 +9,9 @@ type command = string;
 type scriptT =
   | Script(name, command);
 
-let scriptsJson =
-  readFileSync(rootExecPath ++ "/package.json", "utf8") |> Json.parse |> Json.get("scripts");
+let packageJsonPath = rootExecPath ++ "/package.json";
+
+let scriptsJson = readFileSync(packageJsonPath, "utf8") |> Json.parse |> Json.get("scripts");
 
 let scripts =
   switch scriptsJson {
@@ -25,6 +26,10 @@ let scripts =
     )
   | _ => [Script("none", "none")]
   };
+
+"Project Root" |> bold |> Js.log;
+
+packageJsonPath |> bold |> yellow |> Js.log;
 
 "Project Commands" |> bold |> Js.log;
 

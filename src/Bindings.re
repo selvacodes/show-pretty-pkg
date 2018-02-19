@@ -13,6 +13,7 @@
 [@bs.val] [@bs.module "chalk"] external bold : string => string = "";
 
 [@bs.val] [@bs.module "fs"] external readFileSync : (string, string) => string = "readFileSync";
+
 /*type t =*/
 /*| String(string)*/
 /*| Number(float)*/
