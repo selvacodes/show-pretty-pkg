@@ -2,6 +2,8 @@ open Constants;
 
 open Bindings;
 
+open Utils;
+
 type name = string;
 
 type command = string;
@@ -9,37 +11,36 @@ type command = string;
 type scriptT =
   | Script(name, command);
 
-let packageJsonPath = rootExecPath ++ "/package.json";
+let displayScripts = () => {
+  let scriptsJson = getJsonKey("scripts");
+  let scripts =
+    switch scriptsJson {
+    | Some(Object(lst)) =>
+      List.map(
+        (item) =>
+          switch item {
+          | (key, Json.String(valu)) => Script(key, valu)
+          | _ => Script("none", "none")
+          },
+        lst
+      )
+    | _ => [Script("none", "none")]
+    };
+  "Project Commands" |> formattedHeader |> Js.log;
+  List.iter(
+    (item) =>
+      switch item {
+      | Script("none", "none") => ()
+      | Script(name, command) =>
+        name |> formattedName |> Js.log;
+        command |> formattedCommand |> Js.log
+      },
+    scripts
+  )
+};
 
-let scriptsJson = readFileSync(packageJsonPath, "utf8") |> Json.parse |> Json.get("scripts");
+let noop = () => ();
 
-let scripts =
-  switch scriptsJson {
-  | Some(Object(lst)) =>
-    List.map(
-      (item) =>
-        switch item {
-        | (key, Json.String(valu)) => Script(key, valu)
-        | _ => Script("none", "none")
-        },
-      lst
-    )
-  | _ => [Script("none", "none")]
-  };
+Root.displayRoot();
 
-"Project Root" |> bold |> Js.log;
-
-packageJsonPath |> bold |> yellow |> Js.log;
-
-"Project Commands" |> bold |> Js.log;
-
-List.iter(
-  (item) =>
-    switch item {
-    | Script("none", "none") => ()
-    | Script(name, command) =>
-      "\t- " ++ white(name) |> Js.log;
-      "\t\t" ++ yellow(command) |> Js.log
-    },
-  scripts
-);
+displayScripts();

@@ -2,11 +2,17 @@ open Constants;
 
 open Bindings;
 
-let version =
-  readFileSync(rootExecPath ++ "/package.json", "utf8") |> Json.parse |> Json.get("version");
+open Utils;
 
-switch version {
-| Some(Json.String(valu)) => bold("Version") ++ " " ++ yellow(valu) |> bold |> Js.log
-| None => "\t- " ++ white("No Version Found") |> Js.log
-| _ => ()
+let displayVersion = () => {
+  let version = getJsonKey("version");
+  switch version {
+  | Some(Json.String(valu)) => valu |> formattedVersion |> Js.log
+  | None => "\t- " ++ white("No Version Found") |> Js.log
+  | _ => ()
+  }
 };
+
+let noop = () => ();
+
+displayVersion();

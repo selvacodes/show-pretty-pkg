@@ -6,6 +6,15 @@ var $$__dirname = ( __dirname );
 
 var rootExecPath = ( process.cwd() );
 
-exports.$$__dirname  = $$__dirname;
-exports.rootExecPath = rootExecPath;
+var packageJsonPath = rootExecPath + "/package.json";
+
+var newLine = "\n";
+
+var tab = "\t";
+
+exports.$$__dirname     = $$__dirname;
+exports.rootExecPath    = rootExecPath;
+exports.packageJsonPath = packageJsonPath;
+exports.newLine         = newLine;
+exports.tab             = tab;
 /* __dirname Not a pure module */
