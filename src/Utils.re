@@ -28,3 +28,7 @@ let formattedError = (error) => {
 };
 
 let getJsonKey = (key) => readFileSync(packageJsonPath, "utf8") |> Json.parse |> Json.get(key);
+
+let joinStrings = (a, c) => a ++ c;
+
+let joinWithNewLine = (a, c) => {j|$a$c\n|j};

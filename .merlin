@@ -1,0 +1,13 @@
+####{BSB GENERATED: NO EDIT
+B lib/bs
+FLG -open ShowPrettyPkg
+FLG -ppx /Users/selva.g/projects/mine/show-pretty-pkg/node_modules/bs-platform/lib/bsppx.exe
+S /Users/selva.g/projects/mine/show-pretty-pkg/node_modules/bs-platform/lib/ocaml
+B /Users/selva.g/projects/mine/show-pretty-pkg/node_modules/bs-platform/lib/ocaml
+FLG -nostdlib -no-alias-deps -color always
+FLG -w -30-40+6+7+27+32..39+44+45+101
+S /Users/selva.g/projects/mine/show-pretty-pkg/node_modules/rex-json/lib/ocaml
+B /Users/selva.g/projects/mine/show-pretty-pkg/node_modules/rex-json/lib/ocaml
+S src
+B lib/bs/src
+####BSB GENERATED: NO EDIT}

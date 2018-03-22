@@ -1,0 +1,1 @@
+src/Root-ShowPrettyPkg.cmj : src/Bindings-ShowPrettyPkg.cmj src/Constants-ShowPrettyPkg.cmj

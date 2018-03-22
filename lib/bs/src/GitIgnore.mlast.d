@@ -1,0 +1,1 @@
+src/GitIgnore-ShowPrettyPkg.cmj : src/Bindings-ShowPrettyPkg.cmj src/Constants-ShowPrettyPkg.cmj src/Utils-ShowPrettyPkg.cmj

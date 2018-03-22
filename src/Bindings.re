@@ -14,6 +14,9 @@
 
 [@bs.val] [@bs.module "fs"] external readFileSync : (string, string) => string = "readFileSync";
 
+[@bs.val] [@bs.module "fs"] external writeFileSync : (string, string) => unit = "writeFileSync";
+
+[@bs.val] [@bs.module "path"] external pathJoin : (string, string) => string = "join";
 /*type t =*/
 /*| String(string)*/
 /*| Number(float)*/

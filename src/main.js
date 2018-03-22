@@ -6,72 +6,61 @@ var Root$ShowPrettyPkg  = require("./Root.js");
 var Utils$ShowPrettyPkg = require("./Utils.js");
 
 function displayScripts() {
+  var emptyScript = /* Script */[
+    "none",
+    "none"
+  ];
+  var script_of_json = function (item) {
+    var match = item[1];
+    if (typeof match === "number" || match.tag) {
+      return emptyScript;
+    } else {
+      return /* Script */[
+              item[0],
+              match[0]
+            ];
+    }
+  };
   var scriptsJson = Utils$ShowPrettyPkg.getJsonKey("scripts");
   var scripts;
   if (scriptsJson) {
     var match = scriptsJson[0];
     scripts = typeof match === "number" ? /* :: */[
-        /* Script */[
-          "none",
-          "none"
-        ],
+        emptyScript,
         /* [] */0
       ] : (
-        match.tag === 3 ? List.map((function (item) {
-                  var match = item[1];
-                  if (typeof match === "number") {
-                    return /* Script */[
-                            "none",
-                            "none"
-                          ];
-                  } else if (match.tag) {
-                    return /* Script */[
-                            "none",
-                            "none"
-                          ];
-                  } else {
-                    return /* Script */[
-                            item[0],
-                            match[0]
-                          ];
-                  }
-                }), match[0]) : /* :: */[
-            /* Script */[
-              "none",
-              "none"
-            ],
+        match.tag === 3 ? List.map(script_of_json, match[0]) : /* :: */[
+            emptyScript,
             /* [] */0
           ]
       );
   } else {
     scripts = /* :: */[
-      /* Script */[
-        "none",
-        "none"
-      ],
+      emptyScript,
       /* [] */0
     ];
   }
+  var displaySingleCommand = function (script) {
+    var name = script[0];
+    var exit = 0;
+    if (name === "none") {
+      if (script[1] === "none") {
+        return /* () */0;
+      } else {
+        exit = 1;
+      }
+    } else {
+      exit = 1;
+    }
+    if (exit === 1) {
+      console.log(Utils$ShowPrettyPkg.formattedName(name));
+      console.log(Utils$ShowPrettyPkg.formattedCommand(script[1]));
+      return /* () */0;
+    }
+    
+  };
   console.log(Utils$ShowPrettyPkg.formattedHeader("Project Commands"));
-  return List.iter((function (item) {
-                var name = item[0];
-                var exit = 0;
-                if (name === "none") {
-                  if (item[1] === "none") {
-                    return /* () */0;
-                  } else {
-                    exit = 1;
-                  }
-                } else {
-                  exit = 1;
-                }
-                if (exit === 1) {
-                  console.log(Utils$ShowPrettyPkg.formattedName(name));
-                  console.log(Utils$ShowPrettyPkg.formattedCommand(item[1]));
-                  return /* () */0;
-                }
-                
-              }), scripts);
+  return List.iter(displaySingleCommand, scripts);
 }
 
 function noop() {

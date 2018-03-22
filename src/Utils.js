@@ -35,10 +35,20 @@ function getJsonKey(key) {
   return Json.get(key, Json.parse(Fs.readFileSync(Constants$ShowPrettyPkg.packageJsonPath, "utf8")));
 }
 
+function joinStrings(a, c) {
+  return a + c;
+}
+
+function joinWithNewLine(a, c) {
+  return "" + (String(a) + ("" + (String(c) + "\n")));
+}
+
 exports.formattedCommand = formattedCommand;
 exports.formattedName    = formattedName;
 exports.formattedHeader  = formattedHeader;
 exports.formattedVersion = formattedVersion;
 exports.formattedError   = formattedError;
 exports.getJsonKey       = getJsonKey;
+exports.joinStrings      = joinStrings;
+exports.joinWithNewLine  = joinWithNewLine;
 /* fs Not a pure module */

@@ -8,12 +8,15 @@ var rootExecPath = ( process.cwd() );
 
 var packageJsonPath = rootExecPath + "/package.json";
 
+var test = "test";
+
 var newLine = "\n";
 
 var tab = "\t";
 
 exports.$$__dirname     = $$__dirname;
 exports.rootExecPath    = rootExecPath;
+exports.test            = test;
 exports.packageJsonPath = packageJsonPath;
 exports.newLine         = newLine;
 exports.tab             = tab;

@@ -1,0 +1,1 @@
+src/main-ShowPrettyPkg.cmj : src/Root-ShowPrettyPkg.cmj src/Utils-ShowPrettyPkg.cmj
